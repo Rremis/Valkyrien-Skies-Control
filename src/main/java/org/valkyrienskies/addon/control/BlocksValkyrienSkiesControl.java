@@ -1,7 +1,22 @@
 package org.valkyrienskies.addon.control;
 
-import net.minecraft.item.ItemBlock;
-import org.valkyrienskies.addon.control.block.*;
+import org.valkyrienskies.addon.control.block.BlockCompactedValkyrium;
+import org.valkyrienskies.addon.control.block.BlockDummyTelegraph;
+import org.valkyrienskies.addon.control.block.BlockGearbox;
+import org.valkyrienskies.addon.control.block.BlockGyroscopeDampener;
+import org.valkyrienskies.addon.control.block.BlockGyroscopeStabilizer;
+import org.valkyrienskies.addon.control.block.BlockLiftLever;
+import org.valkyrienskies.addon.control.block.BlockLiftValve;
+import org.valkyrienskies.addon.control.block.BlockNetworkDisplay;
+import org.valkyrienskies.addon.control.block.BlockNetworkRelay;
+import org.valkyrienskies.addon.control.block.BlockPhysicsInfuser;
+import org.valkyrienskies.addon.control.block.BlockPhysicsInfuserCreative;
+import org.valkyrienskies.addon.control.block.BlockPhysicsInfuserDummy;
+import org.valkyrienskies.addon.control.block.BlockRotationAxle;
+import org.valkyrienskies.addon.control.block.BlockShipHelm;
+import org.valkyrienskies.addon.control.block.BlockShipWheel;
+import org.valkyrienskies.addon.control.block.BlockSpeedTelegraph;
+import org.valkyrienskies.addon.control.block.custom.BlockCompressor;
 import org.valkyrienskies.addon.control.block.engine.BlockNormalEngine;
 import org.valkyrienskies.addon.control.block.engine.BlockRedstoneEngine;
 import org.valkyrienskies.addon.control.block.multiblocks.BlockGiantPropellerPart;
@@ -12,9 +27,16 @@ import org.valkyrienskies.addon.control.config.VSControlConfig;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 
 public class BlocksValkyrienSkiesControl {
 
+	public final BlockCompressor compressor;
+	public final BlockCompressor compressorFive;
+	public final BlockCompressor compressorEight;
+	public final BlockCompressor compressorTen;
+	public final BlockCompressor compressorFifteen;
+	
     public final BlockPhysicsInfuser physicsInfuser;
     public final BlockPhysicsInfuserDummy physicsInfuserDummy;
     public final BlockPhysicsInfuserCreative physicsInfuserCreative;
@@ -44,6 +66,17 @@ public class BlocksValkyrienSkiesControl {
     public final Block rotationAxle;
 
     public BlocksValkyrienSkiesControl() {
+    	// x1 compressor
+    	compressor = registerBlock(new BlockCompressor("compressor", 1300000));
+    	// x5 compresseurs
+    	compressorFive = registerBlock(new BlockCompressor("compressor_five", 6500000));
+    	// x8 compresseurs = big compressor
+    	compressorEight = registerBlock(new BlockCompressor("compressor_eight", 10400000));
+    	// x10 compresseurs
+    	compressorTen = registerBlock(new BlockCompressor("compressor_ten", 13000000));
+    	// x15 compresseurs
+    	compressorFifteen = registerBlock(new BlockCompressor("compressor_fifteen", 19500000));
+    	
         physicsInfuser = registerBlock(new BlockPhysicsInfuser("physics_infuser"));
         physicsInfuserCreative = registerBlock(new BlockPhysicsInfuserCreative());
         physicsInfuserDummy = registerBlock(new BlockPhysicsInfuserDummy());

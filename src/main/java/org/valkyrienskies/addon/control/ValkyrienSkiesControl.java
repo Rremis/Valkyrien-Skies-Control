@@ -1,5 +1,46 @@
 package org.valkyrienskies.addon.control;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.valkyrienskies.addon.control.block.custom.TileEntityCompressor;
+import org.valkyrienskies.addon.control.block.multiblocks.GiantPropellerMultiblockSchematic;
+import org.valkyrienskies.addon.control.block.multiblocks.RudderAxleMultiblockSchematic;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityGiantPropellerPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityRudderPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumCompressorPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumEnginePart;
+import org.valkyrienskies.addon.control.block.multiblocks.ValkyriumCompressorMultiblockSchematic;
+import org.valkyrienskies.addon.control.block.multiblocks.ValkyriumEngineMultiblockSchematic;
+import org.valkyrienskies.addon.control.block.torque.TileEntityRotationAxle;
+import org.valkyrienskies.addon.control.capability.ICapabilityLastRelay;
+import org.valkyrienskies.addon.control.capability.ImplCapabilityLastRelay;
+import org.valkyrienskies.addon.control.capability.StorageLastRelay;
+import org.valkyrienskies.addon.control.config.VSControlConfig;
+import org.valkyrienskies.addon.control.item.ItemPhysicsCore;
+import org.valkyrienskies.addon.control.item.ItemRelayWire;
+import org.valkyrienskies.addon.control.item.ItemVSWrench;
+import org.valkyrienskies.addon.control.item.ItemVanishingWire;
+import org.valkyrienskies.addon.control.network.VSGuiButtonHandler;
+import org.valkyrienskies.addon.control.network.VSGuiButtonMessage;
+import org.valkyrienskies.addon.control.proxy.CommonProxyControl;
+import org.valkyrienskies.addon.control.tileentity.TileEntityGearbox;
+import org.valkyrienskies.addon.control.tileentity.TileEntityGyroscopeDampener;
+import org.valkyrienskies.addon.control.tileentity.TileEntityGyroscopeStabilizer;
+import org.valkyrienskies.addon.control.tileentity.TileEntityLiftLever;
+import org.valkyrienskies.addon.control.tileentity.TileEntityLiftValve;
+import org.valkyrienskies.addon.control.tileentity.TileEntityNetworkDisplay;
+import org.valkyrienskies.addon.control.tileentity.TileEntityNetworkRelay;
+import org.valkyrienskies.addon.control.tileentity.TileEntityPhysicsInfuser;
+import org.valkyrienskies.addon.control.tileentity.TileEntityPropellerEngine;
+import org.valkyrienskies.addon.control.tileentity.TileEntityShipHelm;
+import org.valkyrienskies.addon.control.tileentity.TileEntitySpeedTelegraph;
+import org.valkyrienskies.addon.world.ValkyrienSkiesWorld;
+import org.valkyrienskies.mod.common.ValkyrienSkiesMod;
+import org.valkyrienskies.mod.common.command.config.VSConfigCommandBase;
+
 import net.minecraft.block.Block;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
@@ -22,28 +63,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.valkyrienskies.addon.control.block.multiblocks.*;
-import org.valkyrienskies.addon.control.block.torque.TileEntityRotationAxle;
-import org.valkyrienskies.addon.control.capability.ICapabilityLastRelay;
-import org.valkyrienskies.addon.control.capability.ImplCapabilityLastRelay;
-import org.valkyrienskies.addon.control.capability.StorageLastRelay;
-import org.valkyrienskies.addon.control.config.VSControlConfig;
-import org.valkyrienskies.addon.control.item.ItemPhysicsCore;
-import org.valkyrienskies.addon.control.item.ItemRelayWire;
-import org.valkyrienskies.addon.control.item.ItemVSWrench;
-import org.valkyrienskies.addon.control.item.ItemVanishingWire;
-import org.valkyrienskies.addon.control.network.VSGuiButtonHandler;
-import org.valkyrienskies.addon.control.network.VSGuiButtonMessage;
-import org.valkyrienskies.addon.control.proxy.CommonProxyControl;
-import org.valkyrienskies.addon.control.tileentity.*;
-import org.valkyrienskies.addon.world.ValkyrienSkiesWorld;
-import org.valkyrienskies.mod.common.ValkyrienSkiesMod;
-import org.valkyrienskies.mod.common.command.config.VSConfigCommandBase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(
     modid = ValkyrienSkiesControl.MOD_ID,
@@ -143,6 +162,8 @@ public class ValkyrienSkiesControl {
     }
 
     private void registerTileEntities() {
+    	 GameRegistry.registerTileEntity(TileEntityCompressor.class,
+    	            new ResourceLocation(MOD_ID, "tile_compressor"));
         GameRegistry.registerTileEntity(TileEntityNetworkRelay.class,
             new ResourceLocation(MOD_ID, "tile_network_relay"));
         GameRegistry.registerTileEntity(TileEntityShipHelm.class,

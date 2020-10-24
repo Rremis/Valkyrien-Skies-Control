@@ -1,5 +1,16 @@
 package org.valkyrienskies.addon.control.tileentity;
 
+import java.util.Optional;
+
+import org.joml.Vector3d;
+import org.valkyrienskies.addon.control.block.custom.TileEntityCompressor;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumCompressorPart;
+import org.valkyrienskies.addon.control.nodenetwork.VSNode_TileEntity;
+import org.valkyrienskies.mod.common.piloting.ControllerInputType;
+import org.valkyrienskies.mod.common.piloting.PilotControlsMessage;
+import org.valkyrienskies.mod.common.ships.ship_world.PhysicsObject;
+import org.valkyrienskies.mod.common.util.ValkyrienUtils;
+
 import gigaherz.graph.api.GraphObject;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -12,17 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.joml.Vector3d;
-import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumCompressorPart;
-import org.valkyrienskies.addon.control.nodenetwork.VSNode_TileEntity;
-import org.valkyrienskies.mod.common.piloting.ControllerInputType;
-import org.valkyrienskies.mod.common.piloting.PilotControlsMessage;
-import org.valkyrienskies.mod.common.ships.ship_world.PhysicsObject;
-import org.valkyrienskies.mod.common.tileentity.TileEntityPilotableImpl;
-import org.valkyrienskies.mod.common.util.ValkyrienUtils;
 import valkyrienwarfare.api.TransformType;
-
-import java.util.Optional;
 
 public class TileEntityLiftLever extends TileEntityNodePilotableImpl {
 
@@ -124,6 +125,13 @@ public class TileEntityLiftLever extends TileEntityNodePilotableImpl {
                         // This is a transient problem that only occurs during world loading.
                         if (masterTile != null) {
                             masterTile.setThrustMultiplierGoal(multiplier);
+                        }
+                    }
+                    if(tile instanceof TileEntityCompressor) {
+                        TileEntityCompressor masterTile = (TileEntityCompressor) tile;
+                        // This is a transient problem that only occurs during world loading.
+                        if (masterTile != null) {
+                        	masterTile.setThrustMultiplierGoal(multiplier);
                         }
                     }
                 }
