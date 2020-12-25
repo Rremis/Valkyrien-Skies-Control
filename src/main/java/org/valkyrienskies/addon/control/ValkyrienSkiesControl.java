@@ -164,6 +164,7 @@ public class ValkyrienSkiesControl {
     private void registerTileEntities() {
     	 GameRegistry.registerTileEntity(TileEntityCompressor.class,
     	            new ResourceLocation(MOD_ID, "tile_compressor"));
+    	 
         GameRegistry.registerTileEntity(TileEntityNetworkRelay.class,
             new ResourceLocation(MOD_ID, "tile_network_relay"));
         GameRegistry.registerTileEntity(TileEntityShipHelm.class,

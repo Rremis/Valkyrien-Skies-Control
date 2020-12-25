@@ -1,5 +1,35 @@
 package org.valkyrienskies.addon.control.proxy;
 
+import org.valkyrienskies.addon.control.ControlEventsClient;
+import org.valkyrienskies.addon.control.ValkyrienSkiesControl;
+import org.valkyrienskies.addon.control.block.custom.TileEntityCompressor;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityGiantPropellerPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityRudderPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumCompressorPart;
+import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumEnginePart;
+import org.valkyrienskies.addon.control.block.torque.TileEntityRotationAxle;
+import org.valkyrienskies.addon.control.renderer.BasicNodeTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.GearboxTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.GiantPropellerPartTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.GibsAtomAnimationRegistry;
+import org.valkyrienskies.addon.control.renderer.LiftLeverTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.PropellerEngineTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.RotationAxleTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.RudderPartTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.ShipHelmTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.SpeedTelegraphTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.TileEntityPhysicsInfuserRenderer;
+import org.valkyrienskies.addon.control.renderer.ValkyriumCompressorPartTileEntityRenderer;
+import org.valkyrienskies.addon.control.renderer.ValkyriumEnginePartTileEntityRenderer;
+import org.valkyrienskies.addon.control.tileentity.TileEntityGearbox;
+import org.valkyrienskies.addon.control.tileentity.TileEntityLiftLever;
+import org.valkyrienskies.addon.control.tileentity.TileEntityNetworkRelay;
+import org.valkyrienskies.addon.control.tileentity.TileEntityPhysicsInfuser;
+import org.valkyrienskies.addon.control.tileentity.TileEntityPropellerEngine;
+import org.valkyrienskies.addon.control.tileentity.TileEntityShipHelm;
+import org.valkyrienskies.addon.control.tileentity.TileEntitySpeedTelegraph;
+import org.valkyrienskies.mod.client.render.GibsModelRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
@@ -10,17 +40,6 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLStateEvent;
-import org.valkyrienskies.addon.control.ControlEventsClient;
-import org.valkyrienskies.addon.control.ValkyrienSkiesControl;
-import org.valkyrienskies.addon.control.block.multiblocks.TileEntityGiantPropellerPart;
-import org.valkyrienskies.addon.control.block.multiblocks.TileEntityRudderPart;
-import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumCompressorPart;
-import org.valkyrienskies.addon.control.block.multiblocks.TileEntityValkyriumEnginePart;
-import org.valkyrienskies.addon.control.block.torque.TileEntityRotationAxle;
-import org.valkyrienskies.addon.control.renderer.*;
-import org.valkyrienskies.addon.control.tileentity.*;
-import org.valkyrienskies.addon.control.renderer.GibsAtomAnimationRegistry;
-import org.valkyrienskies.mod.client.render.GibsModelRegistry;
 
 @SuppressWarnings("unused")
 public class ClientProxyControl extends CommonProxyControl {
@@ -45,6 +64,14 @@ public class ClientProxyControl extends CommonProxyControl {
     }
 
     private static void registerBlockItemModels() {
+    	// CUSTOM
+    	registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.compressor);
+        registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.compressorFive);
+        registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.compressorEight);
+        registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.compressorTen);
+        registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.compressorFifteen);
+    	
+        // CLASSIC
         registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.basicEngine);
         registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.advancedEngine);
         registerBlockItem(ValkyrienSkiesControl.INSTANCE.vsControlBlocks.eliteEngine);
