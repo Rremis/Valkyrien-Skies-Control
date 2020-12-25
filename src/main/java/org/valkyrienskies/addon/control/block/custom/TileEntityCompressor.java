@@ -20,6 +20,7 @@ public class TileEntityCompressor extends BasicForceNodeTileEntity implements IV
 	
 	public TileEntityCompressor(double maxThrust) {
         this();
+        this.setForceOutputNormal(FORCE_NORMAL);
         this.setMaxThrust(maxThrust);
     }
 	

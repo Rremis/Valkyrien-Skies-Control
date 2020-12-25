@@ -1,10 +1,11 @@
 package org.valkyrienskies.addon.control.nodenetwork;
 
-import net.minecraft.nbt.NBTTagCompound;
 import org.joml.Vector3d;
 import org.joml.Vector3dc;
 import org.valkyrienskies.mod.common.ships.ship_world.PhysicsObject;
 import org.valkyrienskies.mod.common.util.ValkyrienNBTUtils;
+
+import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class BasicForceNodeTileEntity extends BasicNodeTileEntity implements IForceTile {
 
@@ -48,6 +49,10 @@ public abstract class BasicForceNodeTileEntity extends BasicNodeTileEntity imple
     @Override
     public Vector3dc getForceOutputNormal(double secondsToApply, PhysicsObject object) {
         return normalVelocityUnoriented;
+    }
+    
+    public void setForceOutputNormal(Vector3dc normalVelocityUnoriented) {
+        this.normalVelocityUnoriented = normalVelocityUnoriented;
     }
 
     @Override

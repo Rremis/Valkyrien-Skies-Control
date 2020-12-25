@@ -1,11 +1,15 @@
 package org.valkyrienskies.addon.control;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.valkyrienskies.addon.control.capability.LastNodeCapabilityProvider;
 import org.valkyrienskies.addon.control.item.ItemBaseWire;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ControlEventsCommon {
 
@@ -16,4 +20,14 @@ public class ControlEventsCommon {
                 new LastNodeCapabilityProvider());
         }
     }
+    
+    @SubscribeEvent()
+	public void PlayerJoin(EntityJoinWorldEvent event) {
+		if(!(event.getEntity() instanceof EntityPlayer))
+			return;
+		
+		EntityPlayer player = (EntityPlayer) event.getEntity();
+		if(!event.getEntity().world.isRemote) 
+			player.sendMessage(new TextComponentString("Mod by One Piece : GoldenAge - Discord: https://discord.gg/VJpUWyg"));
+	}
 }
